@@ -1,0 +1,67 @@
+<!-- index.html pasted-->
+
+{%extends 'layout.html'%}
+{%block title%}
+<title>Product</title>
+{%endblock%}
+
+{%block main_content%}
+<!--  -->
+{% for msg in messages %}
+{% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+<!-- -success =>success ko green color dekhauna -->
+<div class="alert alert-success">
+    {{msg}}
+</div>
+{% endif %}
+<!-- copied -->
+<!-- ERROR HATAYO -->
+{% endfor %}
+
+
+    <!-- <table border="2"> -->
+      <!-- bootstrap -->
+      <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <td>Product Img</td>
+          <td>Product Name</td>
+          <td>Quantity</td>
+          <td>Total Price</td>
+          <td>Username</td>
+          <td>Contact</td>
+          <td>Address</td>
+          <td>Payment Method</td>
+          <!-- <td>Action</td> -->
+        </tr>
+      </thead>
+      <tbody>
+        {%for post in detail%} 
+        <tr>
+            <!-- <td><img src="{{post.img_url}}" alt="" height="190px"></td> -->
+            <td><img src="/{{post.product.product_image}}" alt="" height="190px"></td>
+            <td>{{post.product.product_name}}</td>
+            <td>{{post.quantity}}</td>
+            <td>{{post.total_price}}</td>
+            <td>{{post.user.username}}</td>
+            <td>{{post.contact_no}}</td>
+            <td>{{post.address}}</td>
+            <td>{{post.payment_method}}</td>
+            <!-- <td> -->
+              <!-- bx-md=> size medium -->
+              <!--  -->
+              <!-- <a href="/admin/updateproduct/{{post.id}}" onclick="return confirm('Do you want to edit?')"><i class='bx bxs-edit bx-md'></i></a> -->
+              <!-- FOR DELETING PRODUCT 
+                  postid le id lincha ani urls ma pathaucha
+               -->
+               <!--  -->
+              <!-- <a href="/admin/deleteproduct/{{post.id}}" onclick="return confirm('Are you sure you want to delete')"><i class='bx bxs-trash bx-md'></i></a> -->
+            <!-- </td> -->
+        </tr>
+        
+        {% endfor %}
+      </tbody>
+    </table>
+{%endblock%}
+
+  

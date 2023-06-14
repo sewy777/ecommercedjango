@@ -1,0 +1,111 @@
+<!-- pasted fom homepage -->
+<!-- made one single navbar and footer in layouts and copied here -->
+{% extends 'client/layouts.html' %}
+{%load static%}
+<!-- pasted from layouts.html -->
+{%block title%}
+<title>Homepage</title>
+{%endblock%}
+
+{%block main%}
+<!--  -->
+{% for msg in messages %}
+{% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+<!-- -success =>success ko green color dekhauna -->
+<div class="alert alert-success">
+    {{msg}}
+</div>
+{% endif %}
+<!-- copied -->
+{% if msg.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+<!-- success ko green color dekhauna -->
+<!-- -danger => red color -->
+<div class="alert alert-danger">
+    {{msg}}
+</div>
+{% endif %}
+{% endfor %}
+<!-- pasted from:https://www.bootdey.com/snippets/view/bs4-cart#html -->
+<div class="container px-3 my-5 clearfix">
+    <!-- Shopping cart table -->
+    <div class="card">
+        <div class="card-header">
+            <h2>Shopping Cart</h2>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered m-0">
+                <thead>
+                  <tr>
+                    <!-- Set columns width -->
+                    <th class="text-center py-3 px-4" style="min-width: 400px;">Product Name &amp; Details</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Price</th>
+                    <!-- <th class="text-center py-3 px-4" style="width: 120px;">Quantity</th>
+                    <th class="text-right py-3 px-4" style="width: 100px;">Total</th> -->
+                    <th class="text-center align-middle py-3 px-0" style="width: 40px;">Action<a href="" class="shop-tooltip float-none text-light" title="" data-original-title="Clear cart"><i class="ino ion-md-trash"></i></a></th>
+                    <th>Order</th>
+                  </tr>
+                </thead>
+                <tbody>
+            
+
+            {%for i in items%}
+            <tr>
+                <td class="p-4">
+                  <div class="media align-items-center">
+                    <img style="height: 150px; width: 200px;" src="/{{i.product.product_image}}" class=" " alt="">
+                    <div class="media-body">
+                      <a href="/productdetails/{{i.product_id}}" class="d-block text-dark"><h3>{{i.product.product_name}}</h3></a>
+                      <h5>Category:{{i.product.category.category_name}}</h5>
+                      <!-- <small>
+                        <span class="text-muted">Color:</span>
+                        <span class="ui-product-color ui-product-color-sm align-text-bottom" style="background:#e81e2c;"></span> &nbsp;
+                        <span class="text-muted">Size: </span> EU 37 &nbsp;
+                        <span class="text-muted">Ships from: </span> China
+                      </small> -->
+                    </div>
+                  </div>
+                </td>
+                <td class="text-right font-weight-semibold align-middle p-4">Nrs.{{i.product.product_price}}</td>
+                <!-- <td class="align-middle p-4"><input type="text" class="form-control text-center" value="2"></td>
+                <td class="text-right font-weight-semibold align-middle p-4">$115.1</td> -->
+                <td class="text-center align-middle px-0"><a href="/removecart/{{i.id}}" class="shop-tooltip close float-none text-danger" title="" data-original-title="Remove" onclick="return confirm('Do you want to remove this product from cart?')">×</a></td>
+                <td>
+                  <a href="/orderform/{{i.product_id}}/{{i.id}}"> <button type="button" class="btn btn-lg btn-primary mt-2">Checkout</button></a>
+                </td>
+              </tr>
+            {%endfor%}
+              
+        
+             
+                </tbody>
+              </table>
+            </div>
+            <!-- / Shopping cart table -->
+        
+            <div class="d-flex flex-wrap justify-content-between align-items-center pb-4">
+              <div class="mt-4">
+                <label class="text-muted font-weight-normal">Promocode</label>
+                <input type="text" placeholder="ABC" class="form-control">
+              </div>
+              <div class="d-flex">
+                <!-- <div class="text-right mt-4 mr-5">
+                  <label class="text-muted font-weight-normal m-0">Discount</label>
+                  <div class="text-large"><strong>$20</strong></div>
+                </div>
+                <div class="text-right mt-4">
+                  <label class="text-muted font-weight-normal m-0">Total price</label>
+                  <div class="text-large"><strong>$1164.65</strong></div>
+                </div>
+              </div> -->
+            </div>
+        
+            <div class="float-right">
+              <button type="button" class="btn btn-lg btn-default md-btn-flat mt-2 mr-3"> <a href="/">  Back to shopping </a></button>
+            
+            </div>
+        
+          </div>
+      </div>
+  </div>
+{%endblock%}

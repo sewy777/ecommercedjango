@@ -1,0 +1,52 @@
+<!-- copied index -->
+
+{%extends 'layout.html'%}
+{%block title%}
+<title>Product</title>
+{%endblock%}
+
+{%block main_content%}
+<!-- copied from addcategory -->
+{% for msg in messages %}
+{% if msg.level == DEFAULT_MESSAGE_LEVELS.SUCCESS%}
+<!-- -success =>success ko green color dekhauna -->
+<div class="alert alert-success">
+    {{msg}}
+</div>
+{% endif %}
+<!-- copied -->
+<!-- ERROR HATAYO -->
+{% endfor %}
+
+    <!-- <table border="2"> -->
+      <!-- bootstrap -->
+      <table class="table table-bordered table-striped table-hover">
+      <thead>
+        <tr>
+          <td>Category Name</td>
+          
+          <td>Action</td>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- passed from views -->
+        {%for post in category %} 
+        <tr>
+            <td>{{post.category_name}}</td>
+            <td>
+              <!-- bx-md=> size medium -->
+              <!-- replaced demo and admin -->
+              <a href="/admin/updatecategory/{{post.id}}" onclick="return confirm('Do you want to edit?')"><i class='bx bxs-edit bx-md'></i></a>
+              <!-- FOR DELETING CATEGORY
+                 postid liyo => url ma pathaucha => url bata views ma pathaucha => ani delete_category function ma jancha -->
+                 <!-- replaced demo and admin -->
+              <a href="/admin/deletecategory/{{post.id}}" onclick="return confirm('Are you sure you want to delete')"><i class='bx bxs-trash bx-md'></i></a>
+            </td>
+        </tr>
+        
+        {% endfor %}
+      </tbody>
+    </table>
+{%endblock%}
+
+  
